@@ -2,47 +2,47 @@ const config = [
     {
         "label": "Dashboard",
         "icon": "images/dashboard.svg",
-        "link": "#"
+        "link": "homelab.local/dashboard"
     },
     {
         "label": "Home Assistant",
         "icon": "images/ha.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/home-assistant"
     },
     {
         "label": "Mosquitto",
         "icon": "images/mosquitto.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/mosquitto"
     },
     {
         "label": "Zigbee2MQTT",
         "icon": "images/zigbee2mqtt.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/zigbee2mqtt"
     },
     {
         "label": "Plex",
         "icon": "images/plex.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/plex"
     },
     {
         "label": "Emby",
         "icon": "images/emby.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/emby"
     },
     {
         "label": "Jellyfin",
         "icon": "images/jellyfin.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/jellyfin"
     },
     {
         "label": "Snapcast",
         "icon": "images/snapcast.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/snapcast"
     },
     {
         "label": "Immich",
         "icon": "images/immich.svg",
-        "link": "http://192.168.0.28"
+        "link": "homelab.local/immich"
     },
     {
         "label": "Tailscale",
