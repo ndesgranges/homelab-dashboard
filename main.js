@@ -4,6 +4,19 @@ async function ping(url) {
     return fetch(url, { mode: "no-cors" });
 }
 
+async function serverAlive(url) {
+    return new Promise((resolve, reject) => {
+        ping(url)
+            .then((response) => {
+                if (response.status >= 400 && response.status < 600)
+                    reject(`Error ${response.status}`)
+                resolve(response);
+            })
+            .catch((error) => {reject(error)})
+    });
+    
+}
+
 function initServices() {
     target = document.getElementById("target");
     config.forEach(item => {
@@ -39,11 +52,9 @@ async function initStatus () {
 async function updateStatus() {
     services.forEach(item => {
         const target = item.target
-        ping(item.host)
+        serverAlive(item.host)
             .then( _response => { setStatus("live", target) })
             .catch( _error => { setStatus("down", target) });
-            // .then( (response) => { setStatus.bind("live", item.img) })
-            // .catch( error => { setStatus.bind("down", item.img) });
     }, this)
 }
 
