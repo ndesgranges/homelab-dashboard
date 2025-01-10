@@ -31,14 +31,13 @@ function setStatus(status, target) {
 }
 
 async function initStatus () {
-    updateStatus();
+    return updateStatus();
 }
 
 async function updateStatus() {
     getStatus().then((response => {
         response.json().then( result => {
             service_status = result;
-            console.log(service_status);
             for (const label in service_status) {
                 const status = service_status[label] ? "live" : "down";
                 setStatus(status, services[label]);
@@ -48,9 +47,40 @@ async function updateStatus() {
 }
 
 
-// MAIN
 
-initServices()
-initStatus()
+async function all_images_loaded() {
+    return new Promise((resolve, reject) => {
+        setTimeout(
+            () => {
+                images = document.querySelectorAll("img");
+                let all_complete = Array.from(images).every((img) => img.complete)
+                if (all_complete) {
+                    resolve('images load finish');
+                }
+                else {
+                    reject('image loading');
+                }
+            },
+            Math.random() + 10 // necessary to make each Promise a new instance 
+        )
+    })
+}
 
-setInterval(updateStatus, 30000)
+async function wait_for_all_images_loaded(callback){
+    all_images_loaded()
+        .then( (_res) => { callback() })
+        .catch((_err) => { wait_for_all_images_loaded(callback) } )
+}
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    initServices()
+    wait_for_all_images_loaded(() => {
+        initStatus();
+        setInterval(updateStatus, 30000);
+    })
+    
+
+});
+
