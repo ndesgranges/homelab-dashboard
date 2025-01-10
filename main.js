@@ -1,21 +1,9 @@
-let services = []
+let services = {}
 
-async function ping(url) {
-    return fetch(url, { mode: "no-cors" });
+async function getStatus() {
+    return fetch("get_status.php")
 }
 
-async function serverAlive(url) {
-    return new Promise((resolve, reject) => {
-        ping(url)
-            .then((response) => {
-                if (response.status >= 400 && response.status < 600)
-                    reject(`Error ${response.status}`)
-                resolve(response);
-            })
-            .catch((error) => {reject(error)})
-    });
-    
-}
 
 function initServices() {
     target = document.getElementById("target");
@@ -34,10 +22,7 @@ function initServices() {
         li.appendChild(a);
         target.appendChild(li);
 
-        services.push({
-            "host" : item.link,
-            "target" : a,
-        })
+        services[item.label] = a;
     });
 }
 
@@ -50,12 +35,16 @@ async function initStatus () {
 }
 
 async function updateStatus() {
-    services.forEach(item => {
-        const target = item.target
-        serverAlive(item.host)
-            .then( _response => { setStatus("live", target) })
-            .catch( _error => { setStatus("down", target) });
-    }, this)
+    getStatus().then((response => {
+        response.json().then( result => {
+            service_status = result;
+            console.log(service_status);
+            for (const label in service_status) {
+                const status = service_status[label] ? "live" : "down";
+                setStatus(status, services[label]);
+            }
+        })
+    }))
 }
 
 
@@ -64,4 +53,4 @@ async function updateStatus() {
 initServices()
 initStatus()
 
-setInterval(updateStatus, 10000)
+setInterval(updateStatus, 30000)

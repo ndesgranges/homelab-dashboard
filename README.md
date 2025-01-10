@@ -2,9 +2,11 @@
 
 ### Features
 
-- config as JSON backup is just a file
-  > Actually it's not JSON but a javascript object, potato, potahto
-- No backend, it's all static, use any web server engine you'd like.
+- config as JSON backup is just a file : see `config.json`
+- Only backend is that very few PHP. Before deploying, you can try it with 
+    ```sh
+    php -S 127.0.0.1:9000
+    ```
 - Simple online/offline status
 - beautiful
 - ultra lightweight
