@@ -12,7 +12,14 @@
 
     <ul id="target"></ul>
 
-    <script type="text/javascript" src="config.js"></script>
+    <script>
+        <?php
+            $json = file_get_contents('config.json'); 
+            $json = json_encode(json_decode($json));
+            echo "const json='$json'\nconst config=JSON.parse(json).services";
+        ?>
+        
+    </script>
     <script type="text/javascript" src="main.js"></script>
 
 </body>
