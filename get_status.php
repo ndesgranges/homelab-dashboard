@@ -1,31 +1,46 @@
 <?php
 
-function is_online($url){
-    if(!$url)
-        return true;
-    ini_set('default_socket_timeout', 3);
-    $context = stream_context_create(['http' => array('method' => 'HEAD')]);
-    $headers = @get_headers($url, true, $context);
-    if($headers){
-        $return_code = substr($headers[0], 9, 3);
-        if (400 <= $return_code && $return_code < 600)
-            return false;
-    } else {
-        echo "@W: $url: No response\n";
+foreach (glob("php_hooks/*.php") as $filename)
+{
+    include $filename;
+}
+
+const DEBUG = false;
+// const DEBUG = true;
+
+function check_online_status($hook, $link) {
+    $hook_file = "php_hooks/$hook.php";
+    $hook_function = $hook."_hook";
+    if (!file_exists($hook_file)){
+        if (DEBUG)
+            echo "File not found : php_hooks/$hook.php";
         return false;
     }
-    return true;
+    return $hook_function($link);
 }
 
-$json = file_get_contents('config.json'); 
-$json = json_decode($json);
-$services = $json->{'services'};
 
-$data = [];
-foreach ($services as $element){
-    $data[$element->label] = is_online($element->link);
+function get_config($config_file) {
+    $json = file_get_contents($config_file); 
+    $json = json_decode($json);
+    return $json;
 }
 
-echo json_encode($data);
+function query_status($config) {
+    $data = [];
+    foreach ($config->services as $element){
+        $hook_name = $element->hook;
+        $url = rtrim($element->link,"/");
+        $data[$element->label] = check_online_status($hook_name, $url);
+    }
+    return $data;
+}
+
+
+$config = get_config('config.json');
+$status = query_status($config);
+
+# Return
+echo json_encode($status);
 
 ?>

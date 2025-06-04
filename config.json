@@ -1,59 +1,47 @@
 {
+    "host" : "dashboard.home",
     "services": [
         {
             "label": "Dashboard",
             "icon": "images/dashboard.svg",
-            "link": ""
+            "link": "",
+            "hook": "default"
         },
         {
             "label": "Home Assistant",
             "icon": "images/ha.svg",
-            "link": "http://home-assistant.home"
-        },
-        {
-            "label": "Mosquitto",
-            "icon": "images/mosquitto.svg",
-            "link": "http://mosquitto.home"
-        },
-        {
-            "label": "Zigbee2MQTT",
-            "icon": "images/zigbee2mqtt.svg",
-            "link": "http://zigbee2mqtt.home"
+            "link": "http://home-assistant.home:8123",
+            "hook": "ha"
         },
         {
             "label": "Plex",
             "icon": "images/plex.svg",
-            "link": "http://plex.home"
-        },
-        {
-            "label": "Emby",
-            "icon": "images/emby.svg",
-            "link": "http://emby.home"
-        },
-        {
-            "label": "Jellyfin",
-            "icon": "images/jellyfin.svg",
-            "link": "http://jellyfin.home"
+            "link": "http://plex.home/web",
+            "hook": "default"
         },
         {
             "label": "Snapcast",
             "icon": "images/snapcast.svg",
-            "link": "http://snapcast.home"
+            "link": "http://snapcast.home",
+            "hook": "default"
         },
         {
             "label": "Immich",
             "icon": "images/immich.svg",
-            "link": "http://immich.home"
+            "link": "http://immich.home/",
+            "hook": "immich"
         },
         {
-            "label": "Pi-Hole",
-            "icon": "images/pi-hole.svg",
-            "link": "http://pi-hole.home/admin/"
+            "label": "Sunshine",
+            "icon": "images/sunshine.svg",
+            "link": "http://sunshine.home/ping",
+            "hook": "always_on"
         },
         {
             "label": "Tailscale",
             "icon": "images/tailscale.svg",
-            "link": "https://login.tailscale.com/admin/machines"
+            "link": "https://login.tailscale.com/admin/machines",
+            "hook": "default"
         }
     ]
 }
