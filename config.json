@@ -1,5 +1,5 @@
 {
-    "host" : "dashboard.home",
+    "host" : "dashboard.nicol.app",
     "services": [
         {
             "label": "Dashboard",
@@ -8,33 +8,39 @@
             "hook": "default"
         },
         {
+            "label": "AFFiNE",
+            "icon": "images/affine.svg",
+            "link": "https://affine.nicol.app",
+            "hook": "default"
+        },
+        {
             "label": "Home Assistant",
             "icon": "images/ha.svg",
-            "link": "http://home-assistant.home:8123",
+            "link": "https://home-assistant.nicol.app",
             "hook": "ha"
         },
         {
             "label": "Plex",
             "icon": "images/plex.svg",
-            "link": "http://plex.home/web",
+            "link": "https://plex.nicol.app/web",
             "hook": "default"
         },
         {
             "label": "Snapcast",
             "icon": "images/snapcast.svg",
-            "link": "http://snapcast.home",
+            "link": "https://snapcast.nicol.app",
             "hook": "default"
         },
         {
             "label": "Immich",
             "icon": "images/immich.svg",
-            "link": "http://immich.home/",
+            "link": "https://immich.nicol.app/",
             "hook": "immich"
         },
         {
             "label": "Sunshine",
             "icon": "images/sunshine.svg",
-            "link": "http://sunshine.home/ping",
+            "link": "https://sunshine.nicol.app/ping",
             "hook": "always_on"
         },
         {
