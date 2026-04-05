@@ -32,6 +32,12 @@
             "hook": "default"
         },
         {
+            "label": "Yamtrack",
+            "icon": "images/yamtrack.svg",
+            "link": "https://yamtrack.nicol.app",
+            "hook": "default"
+        },
+        {
             "label": "Immich",
             "icon": "images/immich.svg",
             "link": "https://immich.nicol.app/",
