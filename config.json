@@ -16,7 +16,7 @@
         {
             "label": "Home Assistant",
             "icon": "images/ha.svg",
-            "link": "https://home-assistant.nicol.app",
+            "link": "https://home.nicol.app",
             "hook": "ha"
         },
         {
@@ -29,6 +29,12 @@
             "label": "Snapcast",
             "icon": "images/snapcast.svg",
             "link": "https://snapcast.nicol.app",
+            "hook": "default"
+        },
+        {
+            "label": "Ganymede",
+            "icon": "images/ganymede.svg",
+            "link": "https://ganymede.nicol.app",
             "hook": "default"
         },
         {
